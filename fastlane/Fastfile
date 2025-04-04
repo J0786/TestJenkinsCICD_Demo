@@ -63,7 +63,7 @@ platform :ios do
       export_options: {
         compileBitcode: false,
         provisioningProfiles: {
-          "com.vrinsoft.ioscicd" => "Virnsoft General App" # Ensure correct profile
+          "com.vrinsoft.GeneralApp" => "Virnsoft General App" # Ensure correct profile
         }
       }
     )
