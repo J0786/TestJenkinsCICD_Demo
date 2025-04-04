@@ -52,7 +52,7 @@ platform :ios do
     api_key = app_store_connect_api_key(
       key_id: "DKP8U2RZ6C",                  
       issuer_id: "515a4881-da24-4e62-b978-0f897783ebb0",
-      key_filepath: "/Users/jaydip/.jenkins/workspace/iOS_CICD/fastlane/AuthKey_DKP8U2RZ6C.p8" # Ensure this file exists
+      key_filepath: "./fastlane/AuthKey_DKP8U2RZ6C.p8" # Ensure this file exists
     )
 
     # Build the app
