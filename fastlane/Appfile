@@ -1,4 +1,4 @@
-app_identifier "com.vrinsoft.GeneralApp"
+app_identifier "com.vrinsoft.ioscicd"
 apple_id "admin@vrinsoft.com"
 
 api_key(
