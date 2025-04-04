@@ -57,17 +57,14 @@ platform :ios do
 
     # Build the app
     build_app(
-      workspace: "TestJenkinsDemo.xcworkspace",
-      scheme: "TestJenkinsDemo",
-      export_method: "app-store",
-      export_options: {
-        compileBitcode: false,
-        provisioningProfiles: {
-          "com.vrinsoft.GeneralApp" => "Virnsoft General App" # Ensure correct profile
-        }
+    workspace: "TestJenkinsDemo.xcworkspace",
+    scheme: "TestJenkinsDemo",
+    export_method: "app-store", # or "development" for testing
+    export_options: {
+        method: "app-store",
+        signingStyle: "automatic"
       }
     )
-
     # Upload to TestFlight
     upload_to_testflight(
       api_key: api_key
