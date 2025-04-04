@@ -1,6 +1,10 @@
-# app_identifier("[[APP_IDENTIFIER]]") # The bundle identifier of your app
-# apple_id("[[APPLE_ID]]") # Your Apple Developer Portal username
+app_identifier "com.vrinsoft.GeneralApp"
+apple_id "admin@vrinsoft.com"
 
+api_key(
+  key_id: "DKP8U2RZ6C",
+  issuer_id: "515a4881-da24-4e62-b978-0f897783ebb0",
+  key_content: File.read("fastlane/AuthKey_DKP8U2RZ6C.p8"),
+  in_house: false
+)
 
-# For more information about the Appfile, see:
-#     https://docs.fastlane.tools/advanced/#appfile
