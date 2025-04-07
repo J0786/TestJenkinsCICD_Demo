@@ -7,4 +7,3 @@ api_key(
   key_content: File.read("fastlane/AuthKey_DKP8U2RZ6C.p8"),
   in_house: false
 )
-
