@@ -55,6 +55,8 @@ platform :ios do
       key_filepath: "/Users/jaydip/.jenkins/workspace/iOS_CICD/fastlane/AuthKey_DKP8U2RZ6C.p8"  # Path to your API Key file
     )
 
+    match(type: "appstore", app_identifier: "com.vrinsoft.ioscicd", readonly: false)
+    
     # Build the app
     build_app(
       workspace: "TestJenkinsDemo.xcworkspace",  # Use your workspace file
