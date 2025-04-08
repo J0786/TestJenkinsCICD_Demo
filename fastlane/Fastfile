@@ -65,7 +65,7 @@ platform :ios do
       export_options: {
         compileBitcode: false,
         provisioningProfiles: {
-          "com.vrinsoft.GeneralApp" => "Vrinsoft General Distribution"  # Replace with actual profile
+          "com.vrinsoft.GeneralApp" => "AppStore_General_Distribution"  # Replace with actual profile
         }
       }
     )
