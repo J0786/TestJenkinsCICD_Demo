@@ -55,7 +55,13 @@ platform :ios do
       key_filepath: "./fastlane/AuthKey_DKP8U2RZ6C.p8",  # Path to your API Key file
     )
 
-    # match(type: "appstore", app_identifier: "com.vrinsoft.ioscicd", readonly: false)
+    match(
+      type: "appstore", 
+      readonly: false,
+      app_identifier: "com.vrinsoft.GeneralApp",
+      team_id: "LF3KD8T45S", 
+      username: "admin@vrinsoft.com"
+      )
 
     # Build the app
     build_app(
@@ -65,7 +71,7 @@ platform :ios do
       export_options: {
         compileBitcode: false,
         provisioningProfiles: {
-          "com.vrinsoft.GeneralApp" => "AppStore_General_Distribution"  # Replace with actual profile
+          "com.vrinsoft.GeneralApp" => "Vrinsoft General App"  # Replace with actual profile
         }
       }
     )
