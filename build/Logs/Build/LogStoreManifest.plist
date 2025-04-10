@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>11</integer>
+	<key>logs</key>
+	<dict>
+		<key>7497763B-4BBD-44E4-A57D-8BF7D47602A2</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>7497763B-4BBD-44E4-A57D-8BF7D47602A2.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>TestJenkinsDemo project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>TestJenkinsDemo</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Archiving workspace TestJenkinsDemo with scheme TestJenkinsDemo</string>
+			<key>timeStartedRecording</key>
+			<real>765962504.83263004</real>
+			<key>timeStoppedRecording</key>
+			<real>765962524.84600997</real>
+			<key>title</key>
+			<string>Archiving workspace TestJenkinsDemo with scheme TestJenkinsDemo</string>
+			<key>uniqueIdentifier</key>
+			<string>7497763B-4BBD-44E4-A57D-8BF7D47602A2</string>
+		</dict>
+		<key>C0CC4C63-06A2-4FB3-BB12-5569282DFA89</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>C0CC4C63-06A2-4FB3-BB12-5569282DFA89.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>TestJenkinsDemo project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>TestJenkinsDemo</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Archiving workspace TestJenkinsDemo with scheme TestJenkinsDemo</string>
+			<key>timeStartedRecording</key>
+			<real>765962702.701756</real>
+			<key>timeStoppedRecording</key>
+			<real>765962717.64301801</real>
+			<key>title</key>
+			<string>Archiving workspace TestJenkinsDemo with scheme TestJenkinsDemo</string>
+			<key>uniqueIdentifier</key>
+			<string>C0CC4C63-06A2-4FB3-BB12-5569282DFA89</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -15,13 +15,53 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
+### ios build_simulator
+
+```sh
+[bundle exec] fastlane ios build_simulator
+```
+
+Build the app for iOS Simulator
+
+### ios run_on_simulator
+
+```sh
+[bundle exec] fastlane ios run_on_simulator
+```
+
+
+
+### ios boot_and_run_simulator
+
+```sh
+[bundle exec] fastlane ios boot_and_run_simulator
+```
+
+
+
+### ios run_app_on_simulator
+
+```sh
+[bundle exec] fastlane ios run_app_on_simulator
+```
+
+
+
 ### ios test
 
 ```sh
 [bundle exec] fastlane ios test
 ```
 
-Run tests
+
+
+### ios dynamic_test
+
+```sh
+[bundle exec] fastlane ios dynamic_test
+```
+
+
 
 ### ios build
 

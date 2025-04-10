@@ -16,15 +16,258 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Run tests"
-  lane :test do
-    scan(
+  desc "Build the app for iOS Simulator"
+  lane :build_simulator do
+    build_app(
       scheme: "TestJenkinsDemo",
-      devices: ["iPhone 16 Pro"],
-      clean: true,
-      output_directory: "./fastlane/test_output"
+      workspace: "TestJenkinsDemo.xcworkspace",
+      export_method: "development",
+      export_options: {
+        method: "development",
+        signingStyle: "automatic",
+        compileBitcode: false,
+        destination: "generic/platform=iOS Simulator"
+      },
+      destination: "generic/platform=iOS Simulator",
+      configuration: "Debug",
+      skip_package_ipa: true,
+      clean: true
     )
   end
+ # Run On Simulator
+  lane :run_on_simulator do
+    # Build the app for the iOS Simulator
+    gym(
+      scheme: "TestJenkinsDemo",
+      workspace: "TestJenkinsDemo.xcworkspace",
+      configuration: "Debug",
+      export_method: "development",
+      destination: "platform=iOS Simulator,name=iPhone 16 Pro",
+      output_directory: "./build",  # Specify the output directory
+      output_name: "TestJenkinsDemo",  # Specify the output name
+      clean: true,  # Clean the build before building
+      skip_archive: false,  # Ensure the app is archived
+      skip_package_ipa: true  # Skip IPA packaging since we are running on simulator
+    )
+  
+    # Locate the .app built for the simulator in the DerivedData path
+    derived_data_path = File.expand_path("~/Library/Developer/Xcode/DerivedData")
+    app_path = Dir["#{derived_data_path}/TestJenkinsDemo-*/Build/Products/Debug-iphonesimulator/TestJenkinsDemo.app"].first
+  
+    unless app_path
+      UI.user_error!("App path not found. Make sure the app was built correctly.")
+    end
+  
+    # Install and launch the app on the simulator
+    sh("xcrun simctl install booted '#{app_path}'")
+    sh("xcrun simctl launch booted com.vrinsoft.ioscicd")  # Ensure this matches your app's bundle identifier
+  end
+
+
+
+
+
+
+
+# test the app in simulator
+
+# static run
+lane :boot_and_run_simulator do
+  device_name = "iPhone 16 Pro"
+  UI.message("Fetching UDID for #{device_name}...")
+
+  # Get the UDID of the first matching simulator
+  device_udid = sh("xcrun simctl list devices | grep '#{device_name} (' | awk -F '[()]' '{print $2}' | head -n 1").strip
+
+  UI.message("Booting simulator #{device_name} (#{device_udid})...")
+
+  # Check if already booted
+  boot_status = sh("xcrun simctl list devices | grep #{device_udid} | grep Booted || true").strip
+
+  if boot_status.empty?
+    UI.message("Simulator is not booted yet. Booting now...")
+    sh("xcrun simctl boot #{device_udid}")
+  else
+    UI.message("Simulator #{device_name} (#{device_udid}) is already booted.")
+  end
+
+  # Open the Simulator app
+  sh("open -a Simulator")
+
+  UI.success("Simulator #{device_name} is now running.")
+end
+
+lane :run_app_on_simulator do
+  # Specify the simulator ID and name
+  simulator_id = "5503622B-D804-4D33-9D98-11203E1612DD"  # Replace with your simulator's ID if needed
+
+  # Check if the app was built and install it
+  app_path = Dir["#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/TestJenkinsDemo-*/Build/Products/Debug-iphonesimulator/TestJenkinsDemo.app"].first
+  if app_path
+    puts "Installing the app on the simulator..."
+    
+    # Install the app on the booted simulator
+    sh("xcrun simctl install booted '#{app_path}'")
+    
+    # Launch the app on the simulator
+    sh("xcrun simctl launch booted com.vrinsoft.ioscicd --args -NSUnbufferedIO YES")  # Ensure this matches your app's bundle identifier
+    
+    puts "App is now running on the simulator. You can stop it manually."
+  else
+    UI.user_error!("App path not found. Make sure the app was built correctly.")
+  end
+end
+
+
+
+
+# run and install automatically
+lane :test do
+  # Specify the simulator ID and name
+  simulator_id = "5503622B-D804-4D33-9D98-11203E1612DD" # Replace with your simulator's ID
+
+  # Function to boot the simulator and ensure it's running
+  def boot_simulator(simulator_id)
+    puts "Checking the simulator state..."
+    booted_simulators_output = `xcrun simctl list`
+
+    if booted_simulators_output.include?(simulator_id) && booted_simulators_output.include?("Booted")
+      puts "Simulator is already booted."
+    else
+      puts "Booting the simulator..."
+      `xcrun simctl boot #{simulator_id}`
+      sleep 10 # Ensure sufficient time for the simulator to boot
+      booted_simulators_output = `xcrun simctl list`
+      unless booted_simulators_output.include?(simulator_id) && booted_simulators_output.include?("Booted")
+        UI.user_error!("Simulator failed to boot. Please check the simulator state manually.")
+      end
+    end
+  end
+
+  # Boot the simulator
+  boot_simulator(simulator_id)
+
+  # Run tests
+  scan(
+    scheme: "TestJenkinsDemo",
+    devices: ["iPhone 16 Pro"],
+    clean: true,
+    output_directory: "./fastlane/test_output"
+  )
+
+  # Locate the app and install it
+  app_path = Dir["#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/TestJenkinsDemo-*/Build/Products/Debug-iphonesimulator/TestJenkinsDemo.app"].first
+  if app_path
+    puts "Installing the app on the simulator..."
+    install_command = "xcrun simctl install #{simulator_id} '#{app_path}'"
+
+    begin
+      sh(install_command)
+    rescue FastlaneCore::Interface::FastlaneShellError => e
+      puts "Simulator might have shut down unexpectedly. Attempting to reboot..."
+      boot_simulator(simulator_id) # Reboot the simulator and retry
+      sh(install_command) # Retry the install command
+    end
+
+    # Launch the app
+    puts "Launching the app..."
+    launch_command = "xcrun simctl launch #{simulator_id} com.vrinsoft.ioscicd" # Update with your bundle identifier
+    begin
+      sh(launch_command)
+      sleep 5 # Optional delay
+    rescue => e
+      UI.user_error!("Error during app launch: #{e.message}")
+    end
+
+    # Verify if the app is running
+    app_running = `xcrun simctl listapps #{simulator_id}`
+    if app_running.include?("com.vrinsoft.ioscicd")
+      puts "App is running successfully."
+    else
+      UI.user_error!("App did not launch successfully.")
+    end
+  else
+    UI.user_error!("App path not found. Make sure the app was built correctly.")
+  end
+
+  # Final simulator check
+  final_state = `xcrun simctl list`
+  unless final_state.include?(simulator_id) && final_state.include?("Booted")
+    puts "Warning: The simulator has shut down unexpectedly."
+  end
+end
+
+
+# dynamically get simulator run and install
+lane :dynamic_test do
+  # Function to fetch the UDID of a booted simulator dynamically
+  def get_booted_simulator_udid
+    puts "Fetching UDID of booted simulator..."
+    simulators_output = `xcrun simctl list devices`
+    
+    # Extract the UDID of the first booted simulator
+    booted_simulator = simulators_output.lines.find { |line| line.include?("Booted") }
+    if booted_simulator
+      booted_simulator_udid = booted_simulator.match(/\((.*?)\)/)[1] # Extract UDID from the output
+      puts "Found booted simulator: UDID=#{booted_simulator_udid}"
+      booted_simulator_udid
+    else
+      UI.user_error!("No booted simulator found. Please boot a simulator and try again.")
+    end
+  end
+
+  # Fetch the booted simulator UDID dynamically
+  simulator_id = get_booted_simulator_udid
+
+  # Run tests
+  scan(
+    scheme: "TestJenkinsDemo",
+    devices: ["iPhone 16 Pro"],
+    clean: true,
+    output_directory: "./fastlane/test_output"
+  )
+
+  # Locate the app and install it
+  app_path = Dir["#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/TestJenkinsDemo-*/Build/Products/Debug-iphonesimulator/TestJenkinsDemo.app"].first
+  if app_path
+    puts "Installing the app on the simulator..."
+    install_command = "xcrun simctl install #{simulator_id} '#{app_path}'"
+
+    begin
+      sh(install_command)
+    rescue FastlaneCore::Interface::FastlaneShellError => e
+      puts "Error during app installation: #{e.message}. Attempting to reboot..."
+      sh("xcrun simctl boot #{simulator_id}") # Retry boot
+      sh(install_command) # Retry installation
+    end
+
+    # Launch the app
+    puts "Launching the app..."
+    launch_command = "xcrun simctl launch #{simulator_id} com.vrinsoft.ioscicd" # Update with your bundle identifier
+    begin
+      sh(launch_command)
+      sleep 5 # Optional delay
+    rescue => e
+      UI.user_error!("Error during app launch: #{e.message}")
+    end
+
+    # Verify if the app is running
+    app_running = `xcrun simctl listapps #{simulator_id}`
+    if app_running.include?("com.vrinsoft.ioscicd")
+      puts "App is running successfully."
+    else
+      UI.user_error!("App did not launch successfully.")
+    end
+  else
+    UI.user_error!("App path not found. Make sure the app was built correctly.")
+  end
+
+  # Final simulator check
+  final_state = `xcrun simctl list devices`
+  unless final_state.include?(simulator_id) && final_state.include?("Booted")
+    puts "Warning: The simulator has shut down unexpectedly."
+  end
+end
 
   desc "Build the app"
   lane :build do

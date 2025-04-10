@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'TestJenkinsDemo' in project 'TestJenkinsDemo'
+➜ Implicit dependency on target 'Pods-TestJenkinsDemo' in project 'Pods' via file 'Pods_TestJenkinsDemo.framework' in build phase 'Link Binary'
+Target 'Pods-TestJenkinsDemo' in project 'Pods' (no dependencies)

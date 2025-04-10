@@ -1,0 +1,86 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "ea1dd780501e11a204f3ae3c4a139436db06ef351cfa9341663f1627f3955f6c"
+    }
+  ],
+  "containerPath" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/TestJenkinsDemo.xcworkspace",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "install",
+    "activeArchitecture" : "undefined_arch",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : true,
+      "platform" : "iphoneos",
+      "sdk" : "iphoneos18.4",
+      "sdkVariant" : "iphoneos",
+      "supportedArchitectures" : [
+        "armv4t",
+        "armv5",
+        "armv6",
+        "armv7",
+        "armv7f",
+        "armv7s",
+        "armv7k",
+        "arm64",
+        "arm64e"
+      ],
+      "targetArchitecture" : "undefined_arch"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Products",
+      "derivedDataPath" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build",
+      "indexDataStoreFolderPath" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "install",
+          "ASSET_PACK_FOLDER_PATH" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/ArchiveIntermediates/TestJenkinsDemo/InstallationBuildProductsLocation/OnDemandResources",
+          "ASSETCATALOG_COMPILER_FLATTENED_APP_ICON_PATH" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/ArchiveIntermediates/TestJenkinsDemo/BuildProductsPath/ProductIcon.png",
+          "DEPLOYMENT_LOCATION" : "YES",
+          "DEPLOYMENT_POSTPROCESSING" : "YES",
+          "DSTROOT" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/ArchiveIntermediates/TestJenkinsDemo/InstallationBuildProductsLocation",
+          "EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE" : "NO",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_SIGNATURE_AGGREGATION" : "YES",
+          "ENABLE_XOJIT_PREVIEWS" : "YES",
+          "INDEX_ENABLE_DATA_STORE" : "NO",
+          "MESSAGES_APPLICATION_EXTENSION_SUPPORT_FOLDER_PATH" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/ArchiveIntermediates/TestJenkinsDemo/BuildProductsPath/MessagesApplicationExtensionSupport",
+          "MESSAGES_APPLICATION_SUPPORT_FOLDER_PATH" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/ArchiveIntermediates/TestJenkinsDemo/BuildProductsPath/MessagesApplicationSupport",
+          "OBJROOT" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/ArchiveIntermediates/TestJenkinsDemo/IntermediateBuildFilesPath",
+          "ONLY_ACTIVE_ARCH" : "YES",
+          "SHARED_PRECOMPS_DIR" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/ArchiveIntermediates/TestJenkinsDemo/PrecompiledHeaders",
+          "SIGNATURE_METADATA_FOLDER_PATH" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/ArchiveIntermediates/TestJenkinsDemo/BuildProductsPath/Signatures",
+          "SWIFT_STDLIB_TOOL_UNSIGNED_DESTINATION_DIR" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/ArchiveIntermediates/TestJenkinsDemo/BuildProductsPath/SwiftSupport",
+          "SYMROOT" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/ArchiveIntermediates/TestJenkinsDemo/BuildProductsPath",
+          "WATCHKIT_2_SUPPORT_FOLDER_PATH" : "/Users/jaydip/Desktop/TraineeProjects/TestJenkinsDemo/build/Build/Intermediates.noindex/ArchiveIntermediates/TestJenkinsDemo/BuildProductsPath/WatchKitSupport2"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "archive",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
